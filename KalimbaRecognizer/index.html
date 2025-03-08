@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>Audio Stream</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.4/socket.io.js"></script>
+</head>
+<body>
+    <button id="start">Start Recording</button>
+    <button id="stop">Stop Recording</button>
+
+    <script>
+        const socket = io("http://localhost:5000");
+
+        let audioContext, processor, input, stream;
+
+        document.getElementById("start").addEventListener("click", async () => {
+            stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+
+            audioContext = new AudioContext({ sampleRate: 44100 });
+            processor = audioContext.createScriptProcessor(4096, 1, 1);
+            input = audioContext.createMediaStreamSource(stream);
+
+            input.connect(processor);
+            processor.connect(audioContext.destination);
+
+            processor.onaudioprocess = (event) => {
+                let inputData = event.inputBuffer.getChannelData(0); // Raw PCM data
+                let int16Data = new Int16Array(inputData.length);
+
+                for (let i = 0; i < inputData.length; i++) {
+                    int16Data[i] = Math.max(-1, Math.min(1, inputData[i])) * 32767; // Convert to 16-bit PCM
+                }
+
+                socket.emit("audio", int16Data.buffer);
+            };
+
+            console.log("Záznam spuštěn...");
+        });
+
+        document.getElementById("stop").addEventListener("click", () => {
+            if (processor) {
+                processor.disconnect();
+                input.disconnect();
+                socket.emit("stop_recording");
+                console.log("Záznam zastaven.");
+            }
+        });
+    </script>
+</body>
+</html>
