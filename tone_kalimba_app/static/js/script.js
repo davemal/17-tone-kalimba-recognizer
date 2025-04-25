@@ -5,14 +5,14 @@ const messageDisplay = document.getElementById('message');
 
 let mediaStream;
 let audioContext;
-let scriptProcessor; // Zůstáváme u ScriptProcessorNode pro jednoduchost, i když AudioWorklet je modernější
+let scriptProcessor;
 let isRecording = false;
-const sampleRate = 22050; // Musí odpovídat serveru SAMPLE_RATE
-let lastTone = null; // Proměnná pro uchování posledního rozpoznaného tónu
+const sampleRate = 22050;
+let lastTone = null;
 
 // --- Nové proměnné pro bufferování ---
-let audioBuffer = []; // Buffer pro sběr audio dat
-const TARGET_BUFFER_DURATION_S = 0.75; // Cílová délka bufferu v sekundách (laditelný parametr)
+let audioBuffer = [];
+const TARGET_BUFFER_DURATION_S = 0.75; // Cílová délka bufferu v sekundách
 const TARGET_BUFFER_SIZE_SAMPLES = Math.floor(TARGET_BUFFER_DURATION_S * sampleRate);
 // --- Konec nových proměnných ---
 
@@ -20,7 +20,7 @@ startButton.addEventListener('click', async () => {
     if (isRecording) {
         stopRecording();
     } else {
-        await startRecording(); // Přidáno await
+        await startRecording();
     }
 });
 
@@ -58,7 +58,7 @@ async function startRecording() {
         };
 
         source.connect(scriptProcessor);
-        scriptProcessor.connect(audioContext.destination); // Připojení k destinaci pro případný odposlech (lze odstranit)
+        scriptProcessor.connect(audioContext.destination); // Připojení k destinaci pro případný odposlech
 
         startButton.textContent = 'Zastavit rozpoznávání';
         toneDisplay.textContent = 'Poslouchám...';
@@ -122,8 +122,7 @@ function createWavBuffer(audioData, sampleRate) {
 
     // Format sub-chunk ('fmt ')
     writeString(view, 12, 'fmt ');
-    view.setUint32(16, 16, true); // Subchunk1Size for PCM (18 for non-PCM like float) -> Ne, pro Float je to stále 16 + extra data? Zkusme 16. Standard říká 16 pro PCM, 18 pro non-PCM, 40 pro extensible. Ale Librosa by si měla poradit.
-    // Standardně pro Float PCM (IEEE float) je wFormatTag = 3.
+    view.setUint32(16, 16, true);
     view.setUint16(20, 3, true); // AudioFormat (3 = IEEE float)
     view.setUint16(22, numChannels, true); // NumChannels
     view.setUint32(24, sampleRate, true); // SampleRate
