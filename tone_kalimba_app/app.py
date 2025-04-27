@@ -9,7 +9,7 @@ import time # <-- Pro případné měření času
 # Parameters
 SAMPLE_RATE = 22050
 ONSET_THRESHOLD = 0.3 # Ponecháno, možná bude třeba ladit
-CONFIDENCE_THRESHOLD = 0.7 # Ponecháno, možná bude třeba ladit
+CONFIDENCE_THRESHOLD = 0.6 # Ponecháno, možná bude třeba ladit
 MIN_SEGMENT_LEN_FOR_SVM = 1024 # Minimální délka segmentu pro SVM (např. ~50ms)
 MIN_SEGMENT_LEN_FOR_TONE = 2048 # Minimální délka segmentu pro tónový model (např. ~90ms)
 
