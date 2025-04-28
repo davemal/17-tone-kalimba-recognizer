@@ -20,6 +20,8 @@
         <div id="message"></div>
     </div>
 
+    <button class="backButton" onclick="location.href='{{ url_for( 'index' ) }}'" style="--clr: #39A0ED; background: #160D3A">Zpět<i></i></button>
+
     <script src="{{ url_for('static', filename='js/game.js') }}"></script>
 </body>
 </html>

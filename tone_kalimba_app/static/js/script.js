@@ -236,3 +236,18 @@ async function sendAudioToServer(audioBlob) {
         toneDisplay.style.color = '#D7263D'; // Nastavit barvu chyby
     }
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    const keys = [
+      'C4', 'D4', 'E4', 'F4', 'G4', 'A4', 'B4',
+      'C5', 'D5', 'E5', 'F5', 'G5', 'A5', 'B5',
+      'C6', 'D6', 'E6'
+    ];
+
+    keys.forEach((key, index) => {
+      const element = document.getElementById(`key-${key}`);
+      if (element) {
+        element.style.height = `${100 - index * 5}%`;
+      }
+    });
+});

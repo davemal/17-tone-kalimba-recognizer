@@ -33,7 +33,6 @@ body {
     width: 425px;
     height: 75px;
     position: relative;
-    background: #fff;
     color: #fff;
     text-decoration: none;
     text-transform: uppercase;
@@ -42,9 +41,7 @@ body {
     font-size: 25px;
     padding: 10px 30px;
     transition: 0.5s;
-    border-style: solid;
-    border-width: 3px;
-    border-color: #fff;
+    border: 3px solid #fff;
 }
 .indexButton:hover {
     background: var(--clr);

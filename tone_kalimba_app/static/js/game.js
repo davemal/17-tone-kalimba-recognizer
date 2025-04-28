@@ -62,7 +62,7 @@ function draw() {
     const now = performance.now(), elapsed = now - startTime;
     ctx.clearRect(0,0,canvas.width,canvas.height);
     // pozadí lajn (trapezoid)
-    const topWidth = canvas.width * 0.6, offX = (canvas.width - topWidth)/2, bottomY = canvas.height;
+    const topWidth = canvas.width * 0.8, offX = (canvas.width - topWidth)/2, bottomY = canvas.height;
     const topStep = topWidth/cols, botStep = canvas.width/cols;
     ctx.fillStyle = '#39A0ED';
     ctx.beginPath();
@@ -85,25 +85,28 @@ function draw() {
     }
 
     // kreslení not jako "kosočtverce"
-    rects.forEach(r=>{
-      const dt = now-r.t;
-      if(dt>fallTime || (r.hit && now-r.hitTime>=hitEffectDuration)) return;
-      const y = dt/fallTime*canvas.height;
-      const rectH=30;
-      const y1 = y-rectH/2, y2 = y+rectH/2;
-      const topStepW = topStep, botStepW = botStep;
-      // pro každý okraj vypočítat x
-      const xL1 = offX+topStepW*r.lane + (botStepW*r.lane - (offX+topStepW*r.lane))*(y1/canvas.height);
-      const xR1 = offX+topStepW*(r.lane+1) + (botStepW*(r.lane+1) - (offX+topStepW*(r.lane+1)))*(y1/canvas.height);
-      const xL2 = offX+topStepW*r.lane + (botStepW*r.lane - (offX+topStepW*r.lane))*(y2/canvas.height);
-      const xR2 = offX+topStepW*(r.lane+1) + (botStepW*(r.lane+1) - (offX+topStepW*(r.lane+1)))*(y2/canvas.height);
-      ctx.fillStyle = r.hit ? '#ffb3f7' : '#D183C9';
-      ctx.beginPath();
-      ctx.moveTo(xL1, y1);
-      ctx.lineTo(xR1, y1);
-      ctx.lineTo(xR2, y2);
-      ctx.lineTo(xL2, y2);
-      ctx.closePath(); ctx.fill();
+    rects.forEach(r => {
+        const dt = now - r.t;
+        if (dt > fallTime || (r.hit && now - r.hitTime >= hitEffectDuration)) return;
+    
+        const y = dt / fallTime * canvas.height;
+        const rectH = 30; 
+        const y1 = y - rectH / 2;
+        const y2 = y + rectH / 2;
+    
+        const xL1 = offX + topStep * r.lane + (botStep * r.lane - (offX + topStep * r.lane)) * (y1 / canvas.height);
+        const xR1 = offX + topStep * (r.lane + 1) + (botStep * (r.lane + 1) - (offX + topStep * (r.lane + 1))) * (y1 / canvas.height);
+        const xL2 = offX + topStep * r.lane + (botStep * r.lane - (offX + topStep * r.lane)) * (y2 / canvas.height);
+        const xR2 = offX + topStep * (r.lane + 1) + (botStep * (r.lane + 1) - (offX + topStep * (r.lane + 1))) * (y2 / canvas.height);
+    
+        ctx.fillStyle = r.hit ? '#ffb3f7' : '#D183C9';
+        ctx.beginPath();
+        ctx.moveTo(xL1 + 0.5, y1);
+        ctx.lineTo(xR1 - 0.5, y1);
+        ctx.lineTo(xR2 - 0.5, y2);
+        ctx.lineTo(xL2 + 0.5, y2);
+        ctx.closePath();
+        ctx.fill();
     });
 
     rects = rects.filter(r=> (now-r.t)<=fallTime && !(r.hit && now-r.hitTime>=hitEffectDuration));
