@@ -1,0 +1,82 @@
+body { 
+    background: #160D3A; 
+    color: #fff; 
+    font-family: sans-serif; 
+    text-align: center; 
+}
+#gameCanvas { 
+    background: #160D3A; 
+    display: block; 
+    margin: 20px auto; 
+}
+#controls { 
+    margin: 10px; 
+}
+button { 
+    padding: 10px 20px; 
+    margin: 0 5px; 
+    font-size: 16px; 
+}
+#score, #timer, #toneDisplay, #confidenceDisplay, #message { 
+    font-size: 18px; 
+    margin: 5px; 
+}
+.backButton {
+    width: 425px;
+    height: 75px;
+    left: 25px;
+    bottom: 45px;
+    position: fixed;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+    font-size: 25px;
+    padding: 10px 30px;
+    transition: 0.5s;
+    border: 3px solid #fff;
+    z-index: 100;
+}
+.backButton:hover {
+    background: var(--clr);
+    color: var(--clr);
+    border-color: var(--clr);
+    letter-spacing: 0.15em;
+    box-shadow: 0 0 50px var(--clr);
+}
+.backButton i {
+    position: absolute;
+    inset: 0;
+    display: block;
+}
+.backButton i::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: 10%;
+    width: 35px;
+    height: 3px;
+    background: #160D3A;
+    transform: translateX(-50%) skew(310deg);
+    transition: 0.5s;
+}
+.backButton:hover i::before {
+    width: 70px;
+    left: 85%;
+}
+.backButton i::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 90%;
+    width: 35px;
+    height: 3px;
+    background: #160D3A;
+    transform: translateX(-50%) skew(310deg);
+    transition: 0.5s;
+}
+.backButton:hover i::after {
+    width: 70px;
+    left: 15%;
+}
