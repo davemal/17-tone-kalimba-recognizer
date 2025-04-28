@@ -1,4 +1,4 @@
-# Rozpoznávač hudebního nástroje kalimba 17-tónová varianta
+# Rozpoznávač tónů hudebního nástroje kalimba - 17-tónová varianta
 
 Projekt pro předmět **Výpočetní Inteligence 1**
 
