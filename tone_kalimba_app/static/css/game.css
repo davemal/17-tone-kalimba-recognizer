@@ -1,0 +1,23 @@
+body { 
+    background: #160D3A; 
+    color: #fff; 
+    font-family: sans-serif; 
+    text-align: center; 
+}
+#gameCanvas { 
+    background: #160D3A; 
+    display: block; 
+    margin: 20px auto; 
+}
+#controls { 
+    margin: 10px; 
+}
+button { 
+    padding: 10px 20px; 
+    margin: 0 5px; 
+    font-size: 16px; 
+}
+#score, #timer, #toneDisplay, #confidenceDisplay, #message { 
+    font-size: 18px; 
+    margin: 5px; 
+}

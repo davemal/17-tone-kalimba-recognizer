@@ -144,8 +144,16 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    # Zajistit, že šablona index.html existuje ve složce 'templates'
+    # Zajistit, že šablona recognizer.html existuje ve složce 'templates'
     return render_template('index.html')
+
+@app.route('/recognizer')
+def recognizer():
+    return render_template('recognizer.html')
+
+@app.route('/game')
+def game():
+    return render_template('game.html')
 
 @app.route('/recognize_tone', methods=['POST'])
 def recognize_tone():
@@ -273,3 +281,4 @@ if __name__ == '__main__':
     # nebo upravte cesty v joblib.load()
     # Spusťte s debug=False v produkci
     app.run(debug=True, host='0.0.0.0', port=8000) # host='0.0.0.0' zpřístupní aplikaci v lokální síti
+    

@@ -1,20 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="cs">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rozpoznávání tónů</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kalimba</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
 </head>
 <body>
+    <h1 class="indexTitle">Kalimba</h1>
     <div class="container">
-        <h1>Rozpoznávání hudebních tónů</h1>
-        <button id="startButton">Spustit rozpoznávání</button>
-        <div id="toneDisplay" class="tone-display"></div>
-        <div id="confidenceDisplay" class="confidence-display"></div>
-        <div id="message" class="message"></div>
+        <button class="indexButton" onclick="location.href='{{ url_for( 'recognizer' ) }}'" style="--clr: #D183C9; background: #160D3A">Rozpoznávání tónů<i></i></button>
+        <button class="indexButton" onclick="location.href='{{ url_for( 'game' ) }}'" style="--clr: #39A0ED; background: #160D3A">Hra<i></i></button>
     </div>
-
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>
