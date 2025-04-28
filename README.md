@@ -2,6 +2,8 @@
 
 Projekt pro předmět **Výpočetní Inteligence 1**
 
+![App Image](imgs/main_image.png)
+
 ## Postup spuštění
 1. Spusťte soubor run.py
 2. Vyčkejte na nainstalování potřebných balíčků
