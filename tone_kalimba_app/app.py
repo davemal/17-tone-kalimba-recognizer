@@ -280,5 +280,5 @@ if __name__ == '__main__':
     # Ujistěte se, že máte soubory kalimba_ocsvm.pkl a scaler.pkl ve stejné složce
     # nebo upravte cesty v joblib.load()
     # Spusťte s debug=False v produkci
-    app.run(debug=True, host='0.0.0.0', port=8000) # host='0.0.0.0' zpřístupní aplikaci v lokální síti
+    app.run(debug=False, host='0.0.0.0', port=8000) # host='0.0.0.0' zpřístupní aplikaci v lokální síti
     
